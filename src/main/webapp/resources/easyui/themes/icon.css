@@ -1,0 +1,148 @@
+.icon-small_username{
+	background:url('icons/small_username.png') no-repeat 0px 6px;
+	height:30px
+}
+.icon-small_home{
+	background:url('icons/small_home.png') no-repeat 0px 6px;
+	height:30px
+}
+.icon-inform{
+	background:url('icons/inform.png') no-repeat 0px 6px;
+	height:30px
+}
+.icon-smalldeclear{
+	background:url('icons/smalldeclear.png') no-repeat 0px 6px;
+	height:30px
+}
+.icon-photo{
+	background:url('icons/photo.png') no-repeat 0px 6px;
+	height:30px
+}
+.icon-web{
+	background:url('icons/web.png') no-repeat 0px 7px;
+	height:30px
+}
+.icon-foot{
+	background:url('icons/foot.png') no-repeat 0px 6px;
+	height:30px
+}
+.icon-nav{
+	background:url('icons/nav.png') no-repeat 0px 6px;
+	height:30px
+}
+.icon-usermanager{
+	background:url('icons/usermanager.png') no-repeat 0px 6px;
+	height:30px
+}
+.icon-list{
+	background:url('icons/list.png') no-repeat 0px 6px;
+	height:30px
+}
+.icon-pay{
+	background:url('icons/pay.png') no-repeat 0px 6px;
+	height:30px
+}
+.icon-position{
+	background:url('icons/position.png') no-repeat 0px 6px;
+	height:30px
+}
+.icon-role{
+	background:url('icons/role.png') no-repeat 0px 6px;
+	height:30px
+}
+.icon-chidao{
+	background:url('icons/chidao.png') no-repeat 0px 6px;
+	height:30px
+}
+.icon-zaotui{
+	background:url('icons/zaotui.png') no-repeat 0px 6px;
+	height:30px
+}
+.icon-kaoqin{
+	background:url('icons/kaoqin.png') no-repeat 0px 6px;
+	height:30px
+}
+.icon-getmoney{
+	background:url('icons/getmoney.png') no-repeat 0px 6px;
+	height:30px
+}
+.icon-searchMoney{
+	background:url('icons/searchMoney.png') no-repeat 0px 6px;
+	height:30px;
+}
+.icon-money{
+	background:url('icons/money.png') no-repeat 0px 6px;
+	height:30px
+}
+.icon-manager{
+	background:url('icons/manager.png') no-repeat 0px 6px;
+	height:30px
+}
+.icon-blank{
+	background:url('icons/blank.gif') no-repeat center center;
+}
+.icon-add{
+	background:url('icons/edit_add.png') no-repeat center center;
+}
+.icon-edit{
+	background:url('icons/pencil.png') no-repeat center center;
+}
+.icon-remove{
+	background:url('icons/edit_remove.png') no-repeat center center;
+}
+.icon-save{
+	background:url('icons/filesave.png') no-repeat center center;
+}
+.icon-cut{
+	background:url('icons/cut.png') no-repeat center center;
+}
+.icon-ok{
+	background:url('icons/ok.png') no-repeat center center;
+}
+.icon-no{
+	background:url('icons/no.png') no-repeat center center;
+}
+.icon-cancel{
+	background:url('icons/cancel.png') no-repeat center center;
+}
+.icon-reload{
+	background:url('icons/reload.png') no-repeat center center;
+}
+.icon-search{
+	background:url('icons/search.png') no-repeat center center;
+}
+.icon-print{
+	background:url('icons/print.png') no-repeat center center;
+}
+.icon-help{
+	background:url('icons/help.png') no-repeat center center;
+}
+.icon-undo{
+	background:url('icons/undo.png') no-repeat center center;
+}
+.icon-redo{
+	background:url('icons/redo.png') no-repeat center center;
+}
+.icon-back{
+	background:url('icons/back.png') no-repeat center center;
+}
+.icon-sum{
+	background:url('icons/sum.png') no-repeat 0px 4px;
+}
+.icon-tip{
+	background:url('icons/tip.png') no-repeat 0px 0px;
+}
+.icon-filter{
+	background:url('icons/filter.png') no-repeat center center;
+}
+
+
+.icon-mini-add{
+	background:url('icons/mini_add.png') no-repeat center center;
+}
+.icon-mini-edit{
+	background:url('icons/mini_edit.png') no-repeat center center;
+}
+.icon-mini-refresh{
+	background:url('icons/mini_refresh.png') no-repeat center center;
+}
