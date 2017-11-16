@@ -11,7 +11,7 @@ $(function(){
            dataType:"json",
            success:function(result){
                if(result){
-            	   window.location.href="";
+            	   window.location.href="./pages/admin/MainFrame.jsp";
             	   $("#tip").text();
                } else {
             	   alert(result);

@@ -42,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </tr>
             <tr>
             	<td colspan="2">
-            	  <div id="login-bottom"><a href="#"><span class="login-bottom">登录</span></a>|<span class="login-bottom"><a href="#">注册</a></span></div>
+            	  <div id="login-bottom"><a href="#">登录</a>|<a href="#">注册</a></div>
             	</td>
             </tr>
         </table>
