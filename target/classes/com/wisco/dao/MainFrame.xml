@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wisco.dao.MainFrame">
+	<select id="getNavTree" parameterType="Integer" resultType="com.wisco.entity.Tbmenu">
+		select id , text , state , parentId  , iconCls , url from Tbmenu where parentId=#{0}
+	</select>
+</mapper>

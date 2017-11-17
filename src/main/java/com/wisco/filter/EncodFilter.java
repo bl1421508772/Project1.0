@@ -17,6 +17,9 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Description: <br/>
@@ -31,12 +34,35 @@ public class EncodFilter implements Filter {
     public void destroy() {
     }
 
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain arg2) throws IOException,
+    public void doFilter(ServletRequest ServletRequest, ServletResponse ServletResponse, FilterChain arg2) throws IOException,
             ServletException {
-        request.setCharacterEncoding("utf-8");
-        response.setCharacterEncoding("utf-8");
-        response.setContentType("text/html;charset=utf-8");
-        arg2.doFilter(request, response);
+    	ServletRequest.setCharacterEncoding("utf-8");
+    	ServletResponse.setCharacterEncoding("utf-8");
+    	ServletResponse.setContentType("text/html;charset=utf-8");
+        HttpServletRequest request = (HttpServletRequest) ServletRequest;
+        HttpServletResponse response = (HttpServletResponse) ServletResponse;
+        HttpSession session = request.getSession();
+        String user = (String) session.getAttribute("user");
+        //获取根目录所对应的绝对路径
+        String currentURL = request.getRequestURI();
+        //截取到当前文件名用于比较
+        String targetURL = currentURL.substring(currentURL.lastIndexOf("/") ,currentURL.length());
+        //登陆页面无需过滤
+        String path = request.getContextPath();
+        String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+        if(currentURL.indexOf("/login.jsp") > -1) {
+        	arg2.doFilter(ServletRequest, ServletResponse);
+            return;
+        }
+        if((path+"/").equals(currentURL) && "path".equals(currentURL)){
+        	arg2.doFilter(ServletRequest, ServletResponse);
+        }
+        
+        if(null == user || "".equals(user)){
+        	response.sendRedirect("pages/admin/login.jsp");
+        } else {
+        	arg2.doFilter(ServletRequest, ServletResponse);
+        }
 
     }
 

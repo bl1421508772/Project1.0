@@ -1,3 +1,7 @@
+.icon-man{
+	background:url('icons/man.png') no-repeat 0px 0px;
+	height:30px
+}
 .icon-small_username{
 	background:url('icons/small_username.png') no-repeat 0px 6px;
 	height:30px

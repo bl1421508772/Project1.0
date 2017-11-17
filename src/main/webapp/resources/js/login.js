@@ -1,6 +1,5 @@
 $(function(){
    $("#sign").click(function(){
-	   alert(1);
        $.ajax({
            url:"./admin/sign.do",
            data:{
@@ -14,10 +13,16 @@ $(function(){
             	   window.location.href="./pages/admin/MainFrame.jsp";
             	   $("#tip").text();
                } else {
-            	   alert(result);
             	   $("#tip").text("账户或者密码错误");
+            	   $("input[name=username]").val("");
+                   $("input[name=password]").val("");
                }
            }
        });
-   }); 
+   });
+   $("#reset").click(function(){
+	   $("input[name=username]").val("");
+       $("input[name=password]").val("");
+   });
 })
+
