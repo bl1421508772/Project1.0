@@ -20,7 +20,7 @@ public class MainFrameController {
 	@RequestMapping("/tree")
 	@ResponseBody
 	public List<Tbmenu> getNavTreeInfo(HttpServletRequest request){
-		System.out.println(mainFrame.getNavTreeByParentId(request).toString());
+		//System.out.println(mainFrame.getNavTreeByParentId(request).toString());
 		return mainFrame.getNavTreeByParentId(request);
 	}
 }

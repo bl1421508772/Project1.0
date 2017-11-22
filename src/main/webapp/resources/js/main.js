@@ -35,11 +35,12 @@ $(function(){
 					if(isPanel){ //如果存在当前页面，直接跳转当前页面
 						$("#tabs").tabs("select", text);
 					} else { //不存当前页面的时候 ,添加新的panel
+						
 						$("#tabs").tabs("add" , {
 							title : text ,
 							closable:true,
 							iconCls : node.iconCls,
-							content : '<iframe  frameborder="0" style="width:90%;height:77%" src="'+ node.url + '"></iframe>'
+							content : '<iframe  frameborder="0" style="width:100%;height:100%" src="'+ node.url + '"></iframe>'
 						});
 					}
 				}
@@ -65,8 +66,15 @@ $(function(){
 			expires : 7
 		});
 	};
-	
+	if($.cookie('easyuiThemeName')){  
+	    changeTheme($.cookie('easyuiThemeName'));  
+	}  
 	  showTime();
+	  
+	$("#loginOut").click(function(){
+		herf="./admin/loginOut.do";
+		alert(1);
+	});
 })
 
 function showTime() {

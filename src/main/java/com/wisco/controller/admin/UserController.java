@@ -1,6 +1,11 @@
 package com.wisco.controller.admin;
 
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +24,22 @@ public class UserController {
 	@RequestMapping("/sign")
 	@ResponseBody
 	public boolean checkCurrentUser(String username , String password , HttpServletRequest request){
-		HttpSession session = request.getSession();
-		if(userService.checkUserExsit(username , password)){
-			session.setAttribute("user" , username);//成功登录后，将用户存放在session
-		}
-		return userService.checkUserExsit(username , password);
+		return userService.checkUserExsit(username , password, request);
+	}
+	@RequestMapping("/datagrid")
+	@ResponseBody
+	public List<User> getLoginUser(HttpServletRequest request){
+		return userService.getOnlineUser(request);
+	}
+	/**
+	 * 注销
+	 * @param request
+	 * @return
+	 * @throws IOException 
+	 */
+	@RequestMapping("/loginOut")
+	public void logOut(HttpServletRequest request , HttpServletResponse response) throws IOException{
+		 request.getSession().invalidate();
+		 response.sendRedirect(request.getContextPath()+"/pages/admin/login.jsp");
 	}
 }

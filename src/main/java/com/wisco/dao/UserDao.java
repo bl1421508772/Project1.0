@@ -7,4 +7,6 @@ import com.wisco.entity.User;
 
 public interface UserDao {
 	public int checkUser(String username , String password);
+	
+	public List<User> checkAllUser();
 }

@@ -53,13 +53,12 @@ public class EncodFilter implements Filter {
         if(currentURL.indexOf("/login.jsp") > -1) {
         	arg2.doFilter(ServletRequest, ServletResponse);
             return;
-        }
-        if((path+"/").equals(currentURL) && "path".equals(currentURL)){
+        } else if((path+"/").equals(currentURL) && "path".equals(currentURL)){
         	arg2.doFilter(ServletRequest, ServletResponse);
         }
         
         if(null == user || "".equals(user)){
-        	response.sendRedirect("pages/admin/login.jsp");
+        	response.sendRedirect("/login.jsp");
         } else {
         	arg2.doFilter(ServletRequest, ServletResponse);
         }

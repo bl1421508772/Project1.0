@@ -1,4 +1,6 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8" isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -7,28 +9,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
-</head>
+<head>
 	<base href="<%=basePath%>">
-    <script src="<%=basePath%>/resources/easyui/jquery.min.js"></script>
+    <title>xx主界面</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+	<script src="<%=basePath%>/resources/easyui/jquery.min.js"></script>
     <script src="<%=basePath%>/resources/easyui/jquery.cookie.js"></script>
     <script src="<%=basePath%>/resources/easyui/jquery.easyui.min.js"></script>
     <script src="<%=basePath%>/resources/easyui/locale/easyui-lang-zh_CN.js"></script>
     <link id ="easyuiTheme" href="<%=basePath%>/resources/easyui/themes/default/easyui.css" rel="stylesheet" type="text/css" />
     <link href="<%=basePath%>/resources/easyui/themes/icon.css" rel="stylesheet" type="text/css" />
-   	<script src="<%=basePath%>/resources/js/main.js"></script>
+	<script src="<%=basePath%>/resources/js/main.js"></script>
    	<link href="<%=basePath%>/resources/css/main.css" rel="stylesheet" type="text/css">
+   
+   	
 <body class="easyui-layout" id="easyui-layout">
     <!--页面使用easyui布局-->
         <div data-options="region:'north',split:true,noheader:true" style="overflow: hidden;height:100px;">
         	<table id="head-nav">
         		<tr>
         			<td rowspan="3"><h2>xxx博客传媒有限公司</h2></td>
-        			<td colspan="2"></td>
+        			<td colspan="2">1</td>
         		</tr>
         		<tr>
         			
         			<td id="current-time"></td>
-        			<td></td>
+        			<td><c:if test="${user == null}">请先<a herf="">登录</a></c:if>
+        				<c:if test="${user != null}">欢迎『${user }』<a id="loginOut" href="<%=basePath%>/admin/loginOut.do">注销</a></c:if>
+        			</td>
         		</tr>
         		<tr>
         			<td id="current-time"><div id="currentTime"></td>
@@ -67,9 +76,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
          <div data-options="region:'center',noheader:true,title:'控制台'" style="background:#eee;">
          	<div id="tabs">
-				<div data-options="title:'首页',iconCls:'icon-filter'">
-					
-				</div>
+				
 			</div>
          </div>
     
