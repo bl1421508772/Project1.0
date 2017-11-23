@@ -70,7 +70,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		        </div>
 		    </div>
         </div>
-        <div data-options="region:'south',split:true,noheader:true" style="overflow: hidden;height:40px;">2</div>
+        <div data-options="region:'south',split:true,noheader:true" style="overflow: hidden;height:40px;">${TOTAL_HISTORY_COUNT }</div>
         <div data-options="region:'west',iconCls:'icon-man',title:'导航菜单栏',split:true" style="overflow: hidden;width:120px;">
         	<ul id="tt" class="easyui-tree"></ul>
         </div>

@@ -24,13 +24,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link href="<%=basePath%>/resources/css/online.css" rel="stylesheet" type="text/css">
 
 <body>
-   <table class="easyui-datagrid" style="width:800px;height:250px"
-    data-options="url:'<%=basePath%>admin/datagrid.do',fitColumns:true,singleSelect:true">
+   <table id="ManagerList" class="easyui-datagrid" style="width:800px;height:250px"
+    data-options="url:'<%=basePath%>admin/datagrid.do',fitColumns:true">
     <thead>
 		<tr>
-			<th data-options="field:'code',width:100">在线用户</th>
-			<th data-options="field:'name',width:100">状态</th>
-			<th data-options="field:'price'">操作管理</th>
+			<th field="checked" width="80">Item ID</th>
+			<th data-options="field:'user',width:100">用户名</th>
+			<th data-options="field:'state',width:100">状态</th>
+			<th data-options="field:'ip',width:100">ip地址</th>
+			<th data-options="field:'activeTimes',width:100">访问时间</th>
+			<th data-options="field:'Manager',formatter:rowformatter,width:100">管理</th>
 		</tr>
     </thead>
 </table>

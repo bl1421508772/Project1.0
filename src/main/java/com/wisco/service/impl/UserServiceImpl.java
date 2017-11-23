@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wisco.dao.UserDao;
+import com.wisco.entity.ApplicationConstants;
 import com.wisco.entity.User;
 import com.wisco.service.UserService;
 @Service
@@ -30,81 +32,38 @@ public class UserServiceImpl implements UserService {
 		if(userDao.checkUser(username , password) == 1){
 			session.setAttribute("user" , username);//成功登录后，将用户存放在session
 		}
-		addLoginUser(request);//实现单点登录
 		return userDao.checkUser(username, password) == 1;
 	}
-	
-	/**
-	 * 操作用户
-	 * @param request
-	 */
-	public void addLoginUser(HttpServletRequest request){
-		ServletContext application = request.getSession().getServletContext();
-		  Collection<HttpSession> sessions = null;
-		  if(application.getAttribute("user") == null ){ //判断用户是否存在于application域中
-			  //不存在，当前只有一个登录
-			  sessions = new ArrayList<HttpSession>();//创建一个HttpSession集合
-			  sessions.add(request.getSession());
-			  application.setAttribute("user" , sessions);//key=用户名;value=session
-		  } else {
-			  //如果已经存在对象于域
-			  sessions = (Collection<HttpSession>) application.getAttribute("user");//获取当前域的session对象
-		  }
-		  loginManager(sessions , request.getSession());
-	}
-	
-	 public HttpSession loginManager(Collection<HttpSession> sessions,  HttpSession session){
-		 List<HttpSession> sessionde = new ArrayList<HttpSession>(); //创建一个session集合
-		 for (HttpSession s : sessions) { //遍历sessions集合
-			 try{
-				 //获取用户sessionId
-				 String hoistoryuser = (String) s.getAttribute("user");//之前影虎的user的session
-				 String nowuser = (String) session.getAttribute("user");//现在登录的用户的session
-				 if(nowuser.equals(hoistoryuser)){
-					 sessions.remove(s);//相等就移除之前的session
-					 if(!session.equals(s)){ //如果不是同一浏览器
-						 s.invalidate();// 废弃之前登陆的session
-					 }
-					 break;
-				 }
-			 } catch(Exception e) {
-				 sessionde.add(s);
-			 }
-		}
-		 for (int i = 0; i < sessionde.size(); i++) {
-		      sessions.remove((HttpSession) sessionde.get(i)); 
-		 }
-			  sessions.add(session);
-		return null;
-	 }
 	 /**
 	  * 获取在线用户
 	  * @param request
 	  * @return
 	  */
-	 public List<User> getOnlineUser(HttpServletRequest request){
-		 List<User> users = userDao.checkAllUser();
-		 for (User user : users) {
-			 if(!checkOnline(user , request)){
-				 users.remove(user);
-			 }
-		}
-		 return users;
-	 }
-
-	
-	private boolean checkOnline(User admin , HttpServletRequest request){
-		ServletContext application = request.getSession().getServletContext();
-		 Collection<HttpSession> sessions = (Collection<HttpSession>) application.getAttribute("user");
-		 List<User> list = new ArrayList<User>();
-		 for (HttpSession httpSession : sessions) {
-			String SessionName = (String) httpSession.getAttribute("user");
-			
-			if(SessionName.isEmpty()){
-				return false;
-			}
-			return true;
+	 public List<Map<String , Object>> getOnlineUser(HttpServletRequest request){
+		 List<Map<String , Object>> list = new ArrayList<Map<String , Object>>();
+		 for (Map.Entry<String , HttpSession> entry : ApplicationConstants.SESSION_MAP.entrySet()) {
+			 Map<String , Object> hashMap = new HashMap<String , Object>();
+			 String key = entry.getKey();
+			 HttpSession session = entry.getValue(); 
+			 System.out.println(key + "+" + session );
+			 hashMap.put("user" , session.getAttribute("user"));
+			 hashMap.put("ip" , session.getAttribute("ip"));
+			 hashMap.put("activeTimes", session.getAttribute("activeTimes"));
+			 hashMap.put("state", "在线");
+			 hashMap.put("Manager", "下线");
+			 list.add(hashMap);
 		 }
-		return false;
-	}
+		 return list;
+	 }
+	 
+	 public void underLine(String user , HttpServletRequest request){
+		 for (Map.Entry<String , HttpSession> entry : ApplicationConstants.SESSION_MAP.entrySet()) {
+			 if(user.equals(entry.getValue().getAttribute("user"))){
+				 ApplicationConstants.SESSION_MAP.remove(entry.getValue());
+				 entry.getValue().invalidate();
+			 }
+		 }
+		 getOnlineUser(request);
+	 }
+	
 }

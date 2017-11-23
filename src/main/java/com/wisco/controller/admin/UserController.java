@@ -2,6 +2,7 @@ package com.wisco.controller.admin;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +29,7 @@ public class UserController {
 	}
 	@RequestMapping("/datagrid")
 	@ResponseBody
-	public List<User> getLoginUser(HttpServletRequest request){
+	public List<Map<String , Object>> getLoginUser(HttpServletRequest request){
 		return userService.getOnlineUser(request);
 	}
 	/**
@@ -41,5 +42,13 @@ public class UserController {
 	public void logOut(HttpServletRequest request , HttpServletResponse response) throws IOException{
 		 request.getSession().invalidate();
 		 response.sendRedirect(request.getContextPath()+"/pages/admin/login.jsp");
+	}
+	/**
+	 * 下线功能
+	 * @param user
+	 */
+	@RequestMapping("/dropin")
+	public void dropin(String user , HttpServletRequest request){
+		userService.underLine(user , request);
 	}
 }

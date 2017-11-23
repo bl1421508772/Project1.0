@@ -12,6 +12,7 @@ import com.wisco.entity.User;
 public interface UserService {
 	public boolean checkUserExsit(String username , String password , HttpServletRequest request);
 	
-	public List<User> getOnlineUser(HttpServletRequest request);
-
+	public List<Map<String , Object>> getOnlineUser(HttpServletRequest request);
+	
+	public void underLine(String user , HttpServletRequest request);
 }
