@@ -45,13 +45,14 @@ public class UserServiceImpl implements UserService {
 			 Map<String , Object> hashMap = new HashMap<String , Object>();
 			 String key = entry.getKey();
 			 HttpSession session = entry.getValue(); 
-			 System.out.println(key + "+" + session );
-			 hashMap.put("user" , session.getAttribute("user"));
-			 hashMap.put("ip" , session.getAttribute("ip"));
-			 hashMap.put("activeTimes", session.getAttribute("activeTimes"));
-			 hashMap.put("state", "在线");
-			 hashMap.put("Manager", "下线");
-			 list.add(hashMap);
+			 if(null != session.getAttribute("user")){
+				 hashMap.put("user" , session.getAttribute("user"));
+				 hashMap.put("ip" , session.getAttribute("ip"));
+				 hashMap.put("activeTimes", session.getAttribute("activeTimes"));
+				 hashMap.put("state", "在线");
+				 hashMap.put("Manager", "下线");
+				 list.add(hashMap);
+			 }
 		 }
 		 return list;
 	 }
@@ -59,11 +60,10 @@ public class UserServiceImpl implements UserService {
 	 public void underLine(String user , HttpServletRequest request){
 		 for (Map.Entry<String , HttpSession> entry : ApplicationConstants.SESSION_MAP.entrySet()) {
 			 if(user.equals(entry.getValue().getAttribute("user"))){
-				 ApplicationConstants.SESSION_MAP.remove(entry.getValue());
 				 entry.getValue().invalidate();
+				 ApplicationConstants.SESSION_MAP.remove(entry.getValue());
 			 }
 		 }
 		 getOnlineUser(request);
 	 }
-	
 }

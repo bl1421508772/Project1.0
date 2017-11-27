@@ -28,7 +28,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     data-options="url:'<%=basePath%>admin/datagrid.do',fitColumns:true">
     <thead>
 		<tr>
-			<th field="checked" width="80">Item ID</th>
 			<th data-options="field:'user',width:100">用户名</th>
 			<th data-options="field:'state',width:100">状态</th>
 			<th data-options="field:'ip',width:100">ip地址</th>

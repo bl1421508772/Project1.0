@@ -26,5 +26,15 @@ changeTheme = function(themeName){
 		$("#ManagerList").datagrid('selectRow' , index);
 		var row = $("#ManagerList").datagrid('getSelected');
 		$("#ManagerList").datagrid('deleteRow' , index);
-		window.location.href="./admin/dropin.do?user="+ row.user ;
+		$.ajax({
+			url :'./admin/dropin.do',
+			data:{
+	               user : row.user,
+	        },
+	        type:"post",
+	        dataType:"json",
+	        success:function(result){
+	        	alert(result);
+	        }
+		});
 	}

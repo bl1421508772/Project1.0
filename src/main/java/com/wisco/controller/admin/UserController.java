@@ -22,11 +22,13 @@ import com.wisco.service.UserService;
 public class UserController {
 	@Autowired
 	private UserService userService;
+	
 	@RequestMapping("/sign")
 	@ResponseBody
 	public boolean checkCurrentUser(String username , String password , HttpServletRequest request){
 		return userService.checkUserExsit(username , password, request);
 	}
+	
 	@RequestMapping("/datagrid")
 	@ResponseBody
 	public List<Map<String , Object>> getLoginUser(HttpServletRequest request){
@@ -48,7 +50,9 @@ public class UserController {
 	 * @param user
 	 */
 	@RequestMapping("/dropin")
-	public void dropin(String user , HttpServletRequest request){
+	@ResponseBody
+	public boolean dropin(String user , HttpServletRequest request){
 		userService.underLine(user , request);
+		return true;
 	}
 }

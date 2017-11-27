@@ -41,7 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         		</tr>
         		<tr>
         			<td id="current-time"><div id="currentTime"></td>
-        			<td  id="menu-skip"><a id="nav-btn" href="#" class="easyui-menubutton" menu="#mm1" iconCls="icon-edit" >系统管理</a></td>
+        			<td id="menu-skip"><a id="nav-btn" href="#" class="easyui-menubutton" menu="#mm1" iconCls="icon-edit" >系统管理</a></td>
         		</tr>
         	</table>
         
